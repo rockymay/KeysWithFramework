@@ -97,7 +97,7 @@ namespace Keys {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\Keys\Config\Report.xml.
         /// </summary>
         internal static string ReportXMLPath {
             get {

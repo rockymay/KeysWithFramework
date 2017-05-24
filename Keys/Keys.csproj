@@ -99,6 +99,7 @@
     <Compile Include="Test\Sprint_5.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

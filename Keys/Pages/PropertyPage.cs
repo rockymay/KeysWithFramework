@@ -11,6 +11,7 @@ namespace Keys.Pages
 {
     class PropertyPage
     {
+
         public PropertyPage()  //Initiate
         {
 
@@ -93,8 +94,8 @@ namespace Keys.Pages
 
             addPropertyBtn.Click();
             Driver.wait(1);
+           
 
-          
 
             new SelectElement(propertyType).SelectByIndex(1);
             new SelectElement(propertyType2).SelectByIndex(1);
@@ -107,9 +108,12 @@ namespace Keys.Pages
             //Address
             addressAutoComplete.SendKeys(ExcelLib.ReadData(2, "newAddress"));
             Thread.Sleep(1000);
+            
+            Thread.Sleep(100);
             Actions selectAddress = new Actions(Driver.driver);
-            //selectAddress.SendKeys(Keys.ArrowDown).Perform();
-            //selectAddress.SendKeys(Keys.Enter).Perform();
+           
+            selectAddress.SendKeys(Convert.ToString('\u8595')).Perform(); //Arrow Down unicode
+            selectAddress.SendKeys(Convert.ToString('\u8595')).Perform(); //Enter key unicode
             Thread.Sleep(500);
             suburb.SendKeys(ExcelLib.ReadData(2, "suburb"));
 
