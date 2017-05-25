@@ -24,8 +24,8 @@ namespace Keys.Test
                 test = extent.StartTest("Add New property");
 
                 PropertyPage propertyObj = new PropertyPage();
-                propertyObj.Navigateproperty();
-                propertyObj.AddProperty();
+                
+                propertyObj.verifyResult();
 
 
             }

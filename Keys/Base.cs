@@ -38,7 +38,11 @@ namespace Keys
                     Driver.driver = new FirefoxDriver();
                     break;
                 case 2:
-                    Driver.driver = new ChromeDriver();
+
+                    ChromeOptions options = new ChromeOptions();
+                    options.AddUserProfilePreference("profile.default_content_setting_values.images", 2);
+                    Driver.driver = new ChromeDriver(options);
+                   
                     break;
 
             }

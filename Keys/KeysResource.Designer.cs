@@ -70,7 +70,7 @@ namespace Keys {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\InputData.xlsx.
+        ///   Looks up a localized string similar to C:\Users\rockymay\Source\Repos\Keys\InputData.xlsx.
         /// </summary>
         internal static string ExcelPath {
             get {
@@ -88,7 +88,7 @@ namespace Keys {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\KeysReport.html.
+        ///   Looks up a localized string similar to C:\Users\rockymay\Source\Repos\Keys\KeysReport.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -97,7 +97,7 @@ namespace Keys {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\Keys\Config\Report.xml.
+        ///   Looks up a localized string similar to C:\Users\rockymay\Source\Repos\Keys\Keys\Config\Report.xml.
         /// </summary>
         internal static string ReportXMLPath {
             get {
@@ -106,7 +106,7 @@ namespace Keys {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\ScreenShots.
+        ///   Looks up a localized string similar to C:\Users\rockymay\Source\Repos\Keys\ScreenShots.
         /// </summary>
         internal static string ScreenShotPath {
             get {

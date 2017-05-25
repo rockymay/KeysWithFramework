@@ -122,19 +122,19 @@
     <comment>1 is for firefox and 2 is for chrome</comment>
   </data>
   <data name="ExcelPath" xml:space="preserve">
-    <value>C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\InputData.xlsx</value>
+    <value>C:\Users\rockymay\Source\Repos\Keys\InputData.xlsx</value>
   </data>
   <data name="IsLogin" xml:space="preserve">
     <value>true</value>
     <comment>true is for login page and false is for register</comment>
   </data>
   <data name="ReportPath" xml:space="preserve">
-    <value>C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\KeysReport.html</value>
+    <value>C:\Users\rockymay\Source\Repos\Keys\KeysReport.html</value>
   </data>
   <data name="ReportXMLPath" xml:space="preserve">
-    <value>C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\Keys\Config\Report.xml</value>
+    <value>C:\Users\rockymay\Source\Repos\Keys\Keys\Config\Report.xml</value>
   </data>
   <data name="ScreenShotPath" xml:space="preserve">
-    <value>C:\Users\rockymay\Documents\Visual Studio 2015\Projects\KeysOnboarding_\Keys\ScreenShots</value>
+    <value>C:\Users\rockymay\Source\Repos\Keys\ScreenShots</value>
   </data>
 </root>
