@@ -99,7 +99,9 @@ namespace Keys.Pages
 
         }
 
-        public void AddProperty()
+      
+
+        public void AddPropertyBatch()
         {
             // Driver.driver.Manage().Window.Maximize();
             Navigate();
@@ -107,54 +109,35 @@ namespace Keys.Pages
             //Populate excel-data
             ExcelLib.PopulateInCollection(Base.ExcelPath, "Property");
 
-            Driver.WaitForElement(Driver.driver, By.Id("add-new-property"), 10);
-            addPropertyBtn.Click();
-
-            new SelectElement(propertyType).SelectByIndex(1);
-            new SelectElement(propertyType2).SelectByIndex(1);
-            new SelectElement(rentType).SelectByIndex(1);
-            propertyName.SendKeys(ExcelLib.ReadData(2, "name"));
-            description.SendKeys(ExcelLib.ReadData(2, "description"));
-            targetRent.SendKeys(ExcelLib.ReadData(2, "targetRent"));
 
 
 
+            for (int i = 2; i < 7; i++)
+            {
+                Driver.WaitForElement(Driver.driver, By.Id("add-new-property"), 10);
+                addPropertyBtn.Click();
+                propertyName.SendKeys(ExcelLib.ReadData(i, "name"));
+                description.SendKeys(ExcelLib.ReadData(i, "description"));
+                streetNumber.SendKeys(ExcelLib.ReadData(i, "number"));
+                streetName.SendKeys(ExcelLib.ReadData(i, "streetname"));
+                postalCode.SendKeys(ExcelLib.ReadData(i, "postcode"));
+                city.SendKeys(ExcelLib.ReadData(i, "city"));
+                yearBuilt.SendKeys(ExcelLib.ReadData(i, "yearBuilt"));
+
+                Actions move = new Actions(Driver.driver);
+                move.SendKeys(OpenQA.Selenium.Keys.Tab).Perform();
+                //Click somewhere to make sure year build
 
 
-            /*            Actions selectAddress = new Actions(Driver.driver);
-
-                        selectAddress.SendKeys(Convert.ToString('\u8595')).Perform(); //Arrow Down unicode
-                        selectAddress.SendKeys(Convert.ToString('\u9166')).Perform(); //Enter key unicode
-                        Thread.Sleep(500);
-
-            */
-
-
-            streetNumber.SendKeys(ExcelLib.ReadData(2, "address"));
-            streetName.SendKeys(ExcelLib.ReadData(3, "address"));
-            postalCode.SendKeys(ExcelLib.ReadData(4, "address"));
-            city.SendKeys(ExcelLib.ReadData(5, "address"));
-            suburb.SendKeys(ExcelLib.ReadData(2, "suburb"));
-
-            //Property Detail
-            yearBuilt.SendKeys(ExcelLib.ReadData(2, "yearBuilt"));
-            //parkingSpace.SendKeys(ExcelLib.ReadData(2, "parkingSpace"));
-            //purchasePrice.SendKeys(ExcelLib.ReadData(2, "purchasePrice"));
-            //mortgage.SendKeys(ExcelLib.ReadData(2, "mortgage"));
-            //repayment.SendKeys(ExcelLib.ReadData(2, "repayment"));
-            //new SelectElement(repaymentFrequency).SelectByIndex(1);
-
-            Thread.Sleep(1000);
-            //Save button press
-            saveBtn.Click();
-            Thread.Sleep(1000);
-            fileUploadSaveBtn.Click();
-
-
+                Thread.Sleep(1000);
+                //Save button press
+                saveBtn.Click();
+                Thread.Sleep(1000);
+                fileUploadSaveBtn.Click();
+            }
 
 
         }
-
 
         public void CheckActionButton()
         {
@@ -323,15 +306,25 @@ namespace Keys.Pages
 
             var driver = Driver.driver;
 
-            string excelStreetNum = ExcelLib.ReadData(2, "address");
-            string excelStreetName = ExcelLib.ReadData(3, "address");
-            string excelPostCode = ExcelLib.ReadData(4, "address");
-            string excelCity = ExcelLib.ReadData(5, "address");
+            string excelStreetNum = ExcelLib.ReadData(3, "number");
+            string excelStreetName = ExcelLib.ReadData(3, "streetname");
+            string excelPostCode = ExcelLib.ReadData(3, "postcode");
+            string excelCity = ExcelLib.ReadData(3, "city");
             //string excelSuburb = ExcelLib.ReadData(2, "suburb");
-            string excelRent = ExcelLib.ReadData(2, "targetRent");
-            string excelDescription = ExcelLib.ReadData(2, "description");
-            string keyword = ExcelLib.ReadData(2, "name");
+            //string excelRent = ExcelLib.ReadData(3, "targetRent");
+            string excelDescription = ExcelLib.ReadData(3, "description");
 
+            string keyword = ExcelLib.ReadData(3, "name");
+
+
+            Console.WriteLine(
+                excelStreetNum + Environment.NewLine
+                + excelStreetName + Environment.NewLine
+                 + excelPostCode + Environment.NewLine
+              + excelCity + Environment.NewLine
+                 + excelDescription + Environment.NewLine
+
+                );
             searchTextBox.SendKeys(keyword);
             searchBtn.Click();
 
@@ -339,32 +332,44 @@ namespace Keys.Pages
             var lines = driver.FindElements(By.XPath("//*[@id='propList']/tr"));
             Console.WriteLine("Search result: " + lines.Count());
 
-            for (int i=0; i<lines.Count();i++)
+            for (int i = 0; i < lines.Count(); i++)
             {
+
+                //Reset lines once detail does not match.
                 lines = driver.FindElements(By.XPath("//*[@id='propList']/tr"));
+
 
                 if (lines[i].FindElement(By.XPath("./td[1]")).Text == keyword)
                 {
 
-                    Console.WriteLine((i+1)+ " match with keyword");
+                    Console.WriteLine("Line:" + (i + 1) + " match with keyword");
                     lines[i].FindElement(By.XPath("./td[3]/div")).Click();
                     lines[i].FindElement(By.XPath("./td[3]/div/ul/li[1]")).Click();
 
                     //Compare result:
-
                     var location = driver.FindElement(By.XPath("//*[@id='property-grid']/div/div/div[2]/table/tbody/tr[1]/td")).Text;
                     var description = driver.FindElement(By.XPath("//*[@id='property-grid']/div/div/div[2]/div/p")).Text;
                     var rentPrice = driver.FindElement(By.XPath("//*[@id='property-grid']/div/div/div[2]/table/tbody/tr[6]/td")).Text;
-                  
+
                     Console.WriteLine(location);
                     var locationList = location.Split(',').ToList();
 
-                    if (locationList[0] == excelStreetNum &&
-                        locationList[1] == excelStreetName &&
-                        locationList[2] == excelCity &&
-                        locationList[3] == excelPostCode &&
-                        rentPrice == excelRent &&
-                        description == excelDescription)
+                    foreach (var word in locationList)
+                    {
+                        Console.WriteLine(word);
+                    }
+
+                    Console.WriteLine("NOW COMPARING");
+
+                    if (
+                        excelStreetNum == locationList[0].Trim() &&
+                         excelStreetName == locationList[1].Trim() &&
+                          excelCity == locationList[2].Trim() &&
+                           excelPostCode == locationList[3].Trim() &&
+                            excelDescription == description
+                        )
+
+
                     {
                         Console.WriteLine("Test Pass");
                         break;
@@ -382,7 +387,17 @@ namespace Keys.Pages
                 else { Console.WriteLine("Not Match, Continue"); }
 
             }
-            Console.WriteLine("Test Failed");
+  
+        }
+
+        public void SearchAddress()
+        {
+            var driver = Driver.driver;
+            Actions move = new Actions(driver);
+            addressAutoComplete.SendKeys("keyword");
+            move.SendKeys(OpenQA.Selenium.Keys.Down).Perform();
+            move.SendKeys(OpenQA.Selenium.Keys.Enter).Perform();
+
         }
 
     }

@@ -25,7 +25,7 @@ namespace Keys.Test
 
                 PropertyPage propertyObj = new PropertyPage();
                 
-                propertyObj.verifyResult();
+                propertyObj.AddProperty();
 
 
             }
